@@ -1,12 +1,7 @@
-type Cell = {
-  addToken: (player: string) => void;
-  getValue: () => string;
-};
-
 function Gameboard() {
   const rows = 3;
   const columns = 3;
-  const board: Cell[][] = [];
+  const board = [];
 
   for (let i = 0; i < rows; i++) {
     board[i] = [];
@@ -17,14 +12,14 @@ function Gameboard() {
 
   const getBoard = () => board;
 
-  const dropToken = (row: number, column: number, player: string) => {
+  const dropToken = (row, column, player) => {
     const selectedCell = board[row][column];
     if (selectedCell.getValue() !== "") return;
     selectedCell.addToken(player);
   };
 
   const printBoard = () => {
-    const boardWithCellValues: string[][] = board.map((row) =>
+    const boardWithCellValues = board.map((row) =>
       row.map((cell) => cell.getValue())
     );
     console.table(boardWithCellValues);
@@ -36,7 +31,7 @@ function Gameboard() {
 function Cell() {
   let value = "";
 
-  const addToken = (player: string) => {
+  const addToken = (player) => {
     value = player;
   };
 
@@ -101,7 +96,7 @@ function GameController(playerOneName = "X", playerTwoName = "O") {
     return false;
   };
 
-  const playRound = (row: number, column: number) => {
+  const playRound = (row, column) => {
     console.log(
       `Dropping ${
         getActivePlayer().name
@@ -114,7 +109,7 @@ function GameController(playerOneName = "X", playerTwoName = "O") {
       console.log(`${getActivePlayer().name} WINS!`);
       console.log("please reload the screen to play again ");
       alert(`${activePlayer.name} is the WINNER!!`);
-      location.reload(); //reload the screen after announcement the winner
+      location.reload();//reload the screen after announcement the winner
     } else {
       switchPlayerTurn();
       printNewRound();
@@ -133,8 +128,8 @@ function GameController(playerOneName = "X", playerTwoName = "O") {
 
 function ScreenController() {
   const game = GameController();
-  const playerTurnDiv = document.querySelector(".turn") as HTMLDivElement;
-  const boardDiv = document.querySelector(".board") as HTMLDivElement;
+  const playerTurnDiv = document.querySelector(".turn");
+  const boardDiv = document.querySelector(".board");
 
   const updateScreen = () => {
     // clear the board
@@ -155,8 +150,8 @@ function ScreenController() {
         cellButton.classList.add("cell");
         // Create a data attribute to identify the column
         // This makes it easier to pass into our `playRound` function
-        cellButton.dataset.column = columnIndex.toString();
-        cellButton.dataset.row = rowIndex.toString();
+        cellButton.dataset.column = columnIndex;
+        cellButton.dataset.row = rowIndex;
         cellButton.textContent = cell.getValue();
         boardDiv.appendChild(cellButton);
       });
@@ -164,14 +159,13 @@ function ScreenController() {
   };
 
   // Add event listener for the board
-  function clickHandlerBoard(e: Event) {
-    const target = e.target as HTMLElement;
-    const selectedColumn = target.dataset.column;
-    const selectedRow = target.dataset.row;
+  function clickHandlerBoard(e) {
+    const selectedColumn = e.target.dataset.column;
+    const selectedRow = e.target.dataset.row;
     // Make sure I've clicked a column and not the gaps in between
-    if (!selectedColumn || !selectedRow) return;
+    if (!selectedColumn && !selectedRow) return;
 
-    game.playRound(parseInt(selectedRow), parseInt(selectedColumn));
+    game.playRound(selectedRow, selectedColumn);
     updateScreen();
   }
   boardDiv.addEventListener("click", clickHandlerBoard);
