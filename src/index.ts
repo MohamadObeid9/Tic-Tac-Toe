@@ -1,4 +1,4 @@
 import "./styles.css";
-import { createPara } from "./ts/script";
-createPara();
+import { screenController } from "./ts/screenController";
+screenController();
 console.log("hello world");
