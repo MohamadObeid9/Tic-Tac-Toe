@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Apply base styles to all elements */
+@layer base {
+  * {
+    @apply p-0 m-0 box-border; /* Remove padding and margin, set box-sizing to border-box */
+  }
+}
