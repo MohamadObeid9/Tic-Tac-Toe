@@ -21,7 +21,16 @@ export const screenController = () => {
       row.forEach((cell, columnIndex) => {
         // Anything clickable should be a button!!
         const cellButton = document.createElement("button");
-        cellButton.classList.add("cell");
+        cellButton.classList.add(
+          "flex",
+          "justify-center",
+          "items-center",
+          "text-center",
+          "text-3xl",
+          "border",
+          "border-gray-400",
+          "bg-yellow-300"
+        );
         // Create a data attribute to identify the column
         // This makes it easier to pass into our `playRound` function
         cellButton.dataset.column = columnIndex.toString();
