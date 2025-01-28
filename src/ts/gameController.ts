@@ -1,5 +1,17 @@
 import { gameboard } from "./gameBoard";
 
+/**
+ * Creates a game controller for a Tic-Tac-Toe game.
+ *
+ * @param {string} [playerOneName="X"] - The name of the first player.
+ * @param {string} [playerTwoName="O"] - The name of the second player.
+ * @returns {object} The game controller object with methods to play a round, get the active player, get the board, and check for a win.
+ *
+ * @property {function} playRound - Plays a round by placing the active player's token on the board at the specified row and column.
+ * @property {function} getActivePlayer - Returns the active player object.
+ * @property {function} getBoard - Returns the current state of the game board.
+ * @property {function} checkWin - Checks if there is a winning condition on the board.
+ */
 export const gameController = (playerOneName = "X", playerTwoName = "O") => {
   const board = gameboard();
 

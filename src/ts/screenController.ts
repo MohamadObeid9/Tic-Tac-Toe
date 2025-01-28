@@ -1,5 +1,23 @@
 import { gameController } from "./gameController";
 
+/**
+ * Initializes the screen controller for the Tic-Tac-Toe game.
+ * This function sets up the game board and player turn display,
+ * and handles user interactions with the game board.
+ *
+ * @remarks
+ * The screen controller is responsible for rendering the game board,
+ * updating the display based on the game state, and handling user
+ * clicks on the board to play rounds.
+ *
+ * @example
+ * ```typescript
+ * import { screenController } from './screenController';
+ * screenController();
+ * ```
+ *
+ * @returns {void} This function does not return anything.
+ */
 export const screenController = () => {
   const game = gameController();
   const playerTurnDiv = document.querySelector(".turn") as HTMLDivElement;

@@ -1,3 +1,8 @@
+/**
+ * Represents a cell in a Tic-Tac-Toe game.
+ *
+ * @returns An object with methods to add a token to the cell and get the current value of the cell.
+ */
 export const cell = () => {
   let value = "";
 
